@@ -6,9 +6,10 @@ const Home = () => {
   const navigate = useNavigate();
 
   const calculators = [
-    { title: 'Calculator 1', route: '/calc1' },
-    { title: 'Calculator 2', route: '/calc2' },
-    { title: 'Calculator 3', route: '/calc3' },
+    { title: 'RADIAL GATE', route: '/calc1' }
+    // ,
+    // { title: 'Calculator 2', route: '/calc2' },
+    // { title: 'Calculator 3', route: '/calc3' },
   ];
 
   return (
@@ -49,7 +50,7 @@ const Home = () => {
                 fontWeight: 'bold',
                 px: 2,
                 textTransform: 'uppercase',
-                fontSize: { xs: '0.85rem', sm: '1rem' },
+                fontSize: { xs: '1.5rem', sm: '1.5rem' },
               }}
             >
               {calc.title}
