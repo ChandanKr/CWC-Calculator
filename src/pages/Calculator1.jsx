@@ -25,10 +25,22 @@ const Calculator1 = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
 
   const handleChange = (e) => {
-    setFormValues((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+    const { name, value } = e.target;
+
+    if (name === "currentWaterLevel") {
+      // Allow typing numbers or empty string
+      if (value === "" || !isNaN(value)) {
+        setFormValues((prev) => ({
+          ...prev,
+          [name]: value,
+        }));
+      }
+    } else {
+      setFormValues((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
   };
 
   const round = (value) => Number(Number(value).toFixed(8));
@@ -59,7 +71,9 @@ const Calculator1 = () => {
   const { step1, step2, step3, step4 } = calculateSteps();
 
   const isButtonDisabled =
-    !formValues.currentWaterLevel.trim() || !formValues.gatesOpened.trim();
+    !formValues.currentWaterLevel.trim() ||
+    !formValues.gatesOpened.trim() ||
+    Number(formValues.currentWaterLevel) < 843;
 
   const fields = [
     {
@@ -143,7 +157,7 @@ const Calculator1 = () => {
                 }}
                 InputLabelProps={
                   field.editable
-                    ? { sx: { color: "#fff", fontWeight: "bold" } }
+                    ? { sx: { color: "#000", fontWeight: "bolder" } }
                     : {}
                 }
                 sx={{
